@@ -1,8 +1,6 @@
-import { plants } from "@/lib/plants";
 import Image from "next/image";
 
-export default function PlantCard() {
-  const plant = plants[0];
+export default function PlantCard({ plant }) {
   return (
     <>
       <Image src={plant.imgUrl} alt={plant.name} width={120} height={120} />

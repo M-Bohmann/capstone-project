@@ -1,10 +1,11 @@
-import PlantCard from "@/components/Card/Card";
+import PlantsList from "@/components/PlantsList";
 
 export default function HomePage() {
   return (
-    <div>
-      <h1>Hello from Next.js</h1>
-      <PlantCard />
-    </div>
+    <>
+      <div>
+        <PlantsList />
+      </div>
+    </>
   );
 }
