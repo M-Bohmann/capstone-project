@@ -12,7 +12,6 @@ export const BotanicalNameParagraph = styled.p`
 `;
 
 export const AttributesHeading = styled.h2`
-  //text-align: center;
   margin-left: 30px;
 `;
 
