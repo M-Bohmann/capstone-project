@@ -5,6 +5,7 @@ import {
   StyledPlantsList,
   StyledParagraph,
 } from "./PlantsList.styled";
+import Link from "next/link";
 
 export default function PlantsList() {
   return (
@@ -14,7 +15,9 @@ export default function PlantsList() {
       <StyledPlantsList>
         {plants.map((plant) => (
           <li key={plant.id}>
-            <PlantCard plant={plant} />
+            <Link href={`/plants/${plant.id}`}>
+              <PlantCard plant={plant} />
+            </Link>
           </li>
         ))}
       </StyledPlantsList>

@@ -1,10 +1,10 @@
-import PlantsList from "@/components/PlantsList";
+import Link from "next/link";
 
 export default function HomePage() {
   return (
     <>
       <div>
-        <PlantsList />
+        <Link href="/plants">Übersicht insektenfreundlicher Pflanzen</Link>
       </div>
     </>
   );
