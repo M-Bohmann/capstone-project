@@ -2,7 +2,11 @@ import styled from "styled-components";
 
 export const StyledHeading = styled.h1`
   text-align: center;
-  margin-bottom: 0;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  margin-top: 0;
+  background-color: #fff;
 `;
 
 export const StyledPlantsList = styled.ul`
@@ -12,9 +16,14 @@ export const StyledPlantsList = styled.ul`
   justify-content: space-evenly;
   padding-left: 0;
   padding-right: 0;
+  padding-top: 55px;
 `;
 
 export const StyledParagraph = styled.p`
   text-align: center;
-  margin-top: 0;
+  position: fixed;
+  top: 20px;
+  width: 100%;
+  padding-bottom: 4px;
+  background-color: #fff;
 `;
