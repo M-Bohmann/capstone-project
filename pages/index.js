@@ -1,7 +1,11 @@
+import PlantsList from "@/components/PlantsList";
+
 export default function HomePage() {
   return (
-    <div>
-      <h1>Hello from Next.js</h1>
-    </div>
+    <>
+      <div>
+        <PlantsList />
+      </div>
+    </>
   );
 }
