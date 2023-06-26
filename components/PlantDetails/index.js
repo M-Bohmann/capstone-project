@@ -1,6 +1,11 @@
-import Head from "next/head";
-import Image from "next/image";
 import Link from "next/link";
+import {
+  AttributesHeading,
+  BotanicalNameParagraph,
+  StyledHeading,
+  StyledImage,
+} from "./PlantDetails.styled";
+import Head from "next/head";
 
 export default function PlantDetails({ currentPlant }) {
   const {
@@ -25,10 +30,10 @@ export default function PlantDetails({ currentPlant }) {
       <Link href="/plants">
         <button>← Back to all plants</button>
       </Link>
-      <h1>{name}</h1>
-      <p>{botanicalName}</p>
-      <Image src={imgUrl} alt={name} width={165} height={165} />
-      <h2>Eigenschaften</h2>
+      <StyledHeading>{name}</StyledHeading>
+      <BotanicalNameParagraph>{botanicalName}</BotanicalNameParagraph>
+      <StyledImage src={imgUrl} alt={name} width={305} height={165} />
+      <AttributesHeading>Eigenschaften</AttributesHeading>
       <ul>
         <li>Pflanzenart: {usageType}</li>
         <li>Standort: {lightRequirements}</li>
