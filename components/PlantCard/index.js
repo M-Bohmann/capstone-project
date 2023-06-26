@@ -1,11 +1,12 @@
 import Image from "next/image";
+import { BotanicalNameParagraph, PlantNameParagraph } from "./PlantCard.styled";
 
 export default function PlantCard({ plant }) {
   return (
     <>
       <Image src={plant.imgUrl} alt={plant.name} width={165} height={165} />
-      <p>{plant.name}</p>
-      <p>{plant.botanicalName}</p>
+      <PlantNameParagraph>{plant.name}</PlantNameParagraph>
+      <BotanicalNameParagraph>{plant.botanicalName}</BotanicalNameParagraph>
     </>
   );
 }
