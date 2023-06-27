@@ -1,4 +1,4 @@
-import PlantsList from "@/components/PlantsList";
+import FilteredPlantsList from "@/components/FilteredPlantsList";
 
 export default function BalconyPlantsPlanner() {
   return (
@@ -6,7 +6,7 @@ export default function BalconyPlantsPlanner() {
       <h1>Balkon Pflanzenplaner</h1>
       <button>Filter</button>
       <h2>Pflanzenempfehlung</h2>
-      <PlantsList />
+      <FilteredPlantsList />
     </>
   );
 }
