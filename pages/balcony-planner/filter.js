@@ -30,33 +30,36 @@ export default function Filter() {
   }
 
   return (
-    <StyledForm onSubmit={handleSubmit}>
-      <label htmlFor="plantType">Pflanzenart:</label>
-      <select id="plantType" name="plantType">
-        <option>Alle</option>
-        <option>Nutzpflanze</option>
-        <option>Zierpflanze</option>
-      </select>
-      <label htmlFor="lightRequirements">Standort:</label>
-      <select id="lightRequirements" name="lightRequirements">
-        <option></option>
-        <option>Sonnig</option>
-        <option>Halbschatten</option>
-        <option>Schatten</option>
-      </select>
-      <label htmlFor="growthHeight">Maximale Wuchshöhe:</label>
-      <div>
-        <input id="growthHeight" name="growthHeight" type="number" />
-        <span> cm</span>
-      </div>
-      <label htmlFor="hardy">Winterhart:</label>
-      <select id="hardy" name="hardy">
-        <option></option>
-        <option>ja</option>
-        <option>nein</option>
-      </select>
-      <button type="submit">Speichern</button>
-    </StyledForm>
+    <>
+      <StyledHeading>Dein Pflanzenfilter</StyledHeading>
+      <StyledForm onSubmit={handleSubmit}>
+        <label htmlFor="plantType">Pflanzenart:</label>
+        <select id="plantType" name="plantType">
+          <option>Alle</option>
+          <option>Nutzpflanze</option>
+          <option>Zierpflanze</option>
+        </select>
+        <label htmlFor="lightRequirements">Standort:</label>
+        <select id="lightRequirements" name="lightRequirements">
+          <option></option>
+          <option>Sonnig</option>
+          <option>Halbschatten</option>
+          <option>Schatten</option>
+        </select>
+        <label htmlFor="growthHeight">Maximale Wuchshöhe:</label>
+        <div>
+          <input id="growthHeight" name="growthHeight" type="number" />
+          <span> cm</span>
+        </div>
+        <label htmlFor="hardy">Winterhart:</label>
+        <select id="hardy" name="hardy">
+          <option></option>
+          <option>ja</option>
+          <option>nein</option>
+        </select>
+        <button type="submit">Speichern</button>
+      </StyledForm>
+    </>
   );
 }
 
@@ -64,4 +67,8 @@ const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
+`;
+
+const StyledHeading = styled.h1`
+  text-align: center;
 `;
