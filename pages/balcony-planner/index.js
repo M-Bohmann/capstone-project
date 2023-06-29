@@ -13,7 +13,7 @@ export default function BalconyPlantsPlanner() {
         <button>Filter</button>
       </StyledLink>
       <h2>Pflanzenempfehlung</h2>
-      <FilteredPlantsList plants={plantList} />
+      <FilteredPlantsList filterPlants={plantList} />
     </>
   );
 }

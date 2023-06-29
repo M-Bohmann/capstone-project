@@ -1,4 +1,3 @@
-import { plants } from "@/lib/plants";
 import PlantCard from "../PlantCard";
 import Link from "next/link";
 import {
@@ -6,10 +5,10 @@ import {
   PlantCardListItem,
 } from "./FilteredPlantsList.styled";
 
-export default function FilteredPlantsList() {
+export default function FilteredPlantsList({ filterPlants }) {
   return (
     <HorizontalScrollList>
-      {plants.map((plant) => (
+      {filterPlants.map((plant) => (
         <PlantCardListItem key={plant.id}>
           <Link href={`/plants/${plant.id}`}>
             <PlantCard plant={plant} />
