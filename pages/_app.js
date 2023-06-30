@@ -10,6 +10,13 @@ const useStore = create((set) => ({
     set((state) => ({
       balconyPlantsList: [...state.balconyPlantsList, plant],
     })),
+  deleteBalconyPlant: (plant) =>
+    set((state) => ({
+      balconyPlantsList: state.balconyPlantsList.filter((existingPlant) => {
+        console.log(plant);
+        return plant.uid !== existingPlant.uid;
+      }),
+    })),
 }));
 
 export { useStore };
