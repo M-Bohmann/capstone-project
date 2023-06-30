@@ -5,6 +5,11 @@ import { create } from "zustand";
 const useStore = create((set) => ({
   plantList: plants,
   setPlantList: (plantList) => set(() => ({ plantList: plantList })),
+  balconyPlantsList: [],
+  addBalconyPlant: (plant) =>
+    set((state) => ({
+      balconyPlantsList: [...state.balconyPlantsList, plant],
+    })),
 }));
 
 export { useStore };
