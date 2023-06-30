@@ -10,3 +10,8 @@ export const HorizontalScrollList = styled.ul`
 export const PlantCardListItem = styled.li`
   margin-right: 16px;
 `;
+
+export const AddButton = styled.button`
+  position: absolute;
+  right: 10px;
+`;
