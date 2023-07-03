@@ -5,22 +5,19 @@ import {
   HorizontalScrollList,
   PlantCardListItem,
 } from "./FilteredPlantsList.styled";
-import { useStore } from "@/pages/_app";
-import { uid } from "uid";
 import { PlantCardWrapper } from "../MyBalconyPlants/MyBalconyPlants.styled";
 
-export default function FilteredPlantsList({ filterPlants }) {
-  const addBalconyPlant = useStore((state) => state.addBalconyPlant);
-
+export default function FilteredPlantsList({
+  filteredPlants,
+  addPlantToBalcony,
+}) {
   return (
     <HorizontalScrollList>
-      {filterPlants.map((plant) => (
+      {filteredPlants.map((plant) => (
         <PlantCardListItem key={plant.id}>
           <PlantCardWrapper>
             {" "}
-            <AddPlantButton
-              onClick={() => addBalconyPlant({ ...plant, uid: uid() })}
-            >
+            <AddPlantButton onClick={() => addPlantToBalcony(plant)}>
               ＋
             </AddPlantButton>
             <Link href={`/plants/${plant.id}`}>

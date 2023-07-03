@@ -1,4 +1,3 @@
-import { useStore } from "@/pages/_app";
 import PlantCard from "../PlantCard";
 import {
   DeletePlantButton,
@@ -7,13 +6,10 @@ import {
 } from "./MyBalconyPlants.styled";
 import Link from "next/link";
 
-export default function MyBalconyPlants() {
-  const balconyPlantsList = useStore((state) => state.balconyPlantsList);
-  const deleteBalconyPlant = useStore((state) => state.deleteBalconyPlant);
-
+export default function MyBalconyPlants({ balconyPlants, deleteBalconyPlant }) {
   return (
     <MyBalconyPlantsList>
-      {balconyPlantsList.map((plant) => (
+      {balconyPlants.map((plant) => (
         <li key={plant.uid}>
           <PlantCardWrapper>
             <DeletePlantButton onClick={() => deleteBalconyPlant(plant)}>

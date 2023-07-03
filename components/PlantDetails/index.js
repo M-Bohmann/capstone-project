@@ -9,7 +9,6 @@ import { useRouter } from "next/router";
 
 export default function PlantDetails({ currentPlant }) {
   const router = useRouter();
-
   const {
     name,
     botanicalName,
@@ -29,9 +28,7 @@ export default function PlantDetails({ currentPlant }) {
       <Head>
         <title>{name}</title>
       </Head>
-
       <button onClick={router.back}>← Back</button>
-
       <StyledHeading>{name}</StyledHeading>
       <BotanicalNameParagraph>{botanicalName}</BotanicalNameParagraph>
       <StyledImage src={imgUrl} alt={name} width={305} height={165} />

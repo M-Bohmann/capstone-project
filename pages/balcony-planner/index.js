@@ -1,18 +1,22 @@
 import FilteredPlantsList from "@/components/FilteredPlantsList";
 import Link from "next/link";
-import { useStore } from "../_app";
 import styled from "styled-components";
 import MyBalconyPlants from "@/components/MyBalconyPlants";
 
-export default function BalconyPlantsPlanner() {
-  const plantList = useStore((state) => state.plantList);
-
+export default function BalconyPlantsPlanner({
+  filteredPlants,
+  addPlantToBalcony,
+  balconyPlants,
+  deleteBalconyPlant,
+}) {
   return (
     <>
       <StyledHeading>Balkon Pflanzenplaner</StyledHeading>
       <h2>Mein Balkon</h2>
-      <MyBalconyPlants />
-
+      <MyBalconyPlants
+        balconyPlants={balconyPlants}
+        deleteBalconyPlant={deleteBalconyPlant}
+      />
       <h2>
         Pflanzenempfehlung{" "}
         <Link href="/balcony-planner/filter">
@@ -26,7 +30,10 @@ export default function BalconyPlantsPlanner() {
           </svg>{" "}
         </Link>
       </h2>
-      <FilteredPlantsList filterPlants={plantList} />
+      <FilteredPlantsList
+        filteredPlants={filteredPlants}
+        addPlantToBalcony={addPlantToBalcony}
+      />
     </>
   );
 }

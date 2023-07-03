@@ -1,15 +1,14 @@
 import { plants } from "@/lib/plants";
 import { useRouter } from "next/router";
-import { useStore } from "../_app";
 import styled from "styled-components";
 
-export default function Filter() {
+export default function Filter({ setFilteredPlants, setFilter, filter }) {
   const router = useRouter();
-  const setPlantList = useStore((state) => state.setPlantList);
 
   function filteredPlants(event) {
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
+    setFilter(data);
     const filteredPlants = plants.filter((plant) => {
       return (
         (data.plantType === "Alle" || plant.usageType === data.plantType) &&
@@ -25,7 +24,7 @@ export default function Filter() {
   function handleSubmit(event) {
     event.preventDefault();
     const filteredPlantList = filteredPlants(event);
-    setPlantList(filteredPlantList);
+    setFilteredPlants(filteredPlantList);
     router.push("/balcony-planner");
   }
 
@@ -34,13 +33,17 @@ export default function Filter() {
       <StyledHeading>Dein Pflanzenfilter</StyledHeading>
       <StyledForm onSubmit={handleSubmit}>
         <label htmlFor="plantType">Pflanzenart:</label>
-        <select id="plantType" name="plantType">
+        <select id="plantType" name="plantType" defaultValue={filter.plantType}>
           <option>Alle</option>
           <option>Nutzpflanze</option>
           <option>Zierpflanze</option>
         </select>
         <label htmlFor="lightRequirements">Standort:</label>
-        <select id="lightRequirements" name="lightRequirements">
+        <select
+          id="lightRequirements"
+          name="lightRequirements"
+          defaultValue={filter.lightRequirements}
+        >
           <option></option>
           <option>Sonnig</option>
           <option>Halbschatten</option>
@@ -48,11 +51,16 @@ export default function Filter() {
         </select>
         <label htmlFor="growthHeight">Maximale Wuchshöhe:</label>
         <div>
-          <input id="growthHeight" name="growthHeight" type="number" />
+          <input
+            id="growthHeight"
+            name="growthHeight"
+            type="number"
+            defaultValue={filter.growthHeight}
+          />
           <span> cm</span>
         </div>
         <label htmlFor="hardy">Winterhart:</label>
-        <select id="hardy" name="hardy">
+        <select id="hardy" name="hardy" defaultValue={filter.hardy}>
           <option></option>
           <option>ja</option>
           <option>nein</option>
