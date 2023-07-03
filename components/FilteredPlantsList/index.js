@@ -1,18 +1,29 @@
 import PlantCard from "../PlantCard";
 import Link from "next/link";
 import {
+  AddPlantButton,
   HorizontalScrollList,
   PlantCardListItem,
 } from "./FilteredPlantsList.styled";
+import { PlantCardWrapper } from "../MyBalconyPlants/MyBalconyPlants.styled";
 
-export default function FilteredPlantsList({ filterPlants }) {
+export default function FilteredPlantsList({
+  filteredPlants,
+  addPlantToBalcony,
+}) {
   return (
     <HorizontalScrollList>
-      {filterPlants.map((plant) => (
+      {filteredPlants.map((plant) => (
         <PlantCardListItem key={plant.id}>
-          <Link href={`/plants/${plant.id}`}>
-            <PlantCard plant={plant} />
-          </Link>
+          <PlantCardWrapper>
+            {" "}
+            <AddPlantButton onClick={() => addPlantToBalcony(plant)}>
+              ＋
+            </AddPlantButton>
+            <Link href={`/plants/${plant.id}`}>
+              <PlantCard plant={plant} />
+            </Link>
+          </PlantCardWrapper>
         </PlantCardListItem>
       ))}
     </HorizontalScrollList>

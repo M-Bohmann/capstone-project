@@ -1,19 +1,50 @@
 import { plants } from "@/lib/plants";
 import GlobalStyle from "../styles";
-import { create } from "zustand";
-
-const useStore = create((set) => ({
-  plantList: plants,
-  setPlantList: (plantList) => set(() => ({ plantList: plantList })),
-}));
-
-export { useStore };
+import useLocalStorageState from "use-local-storage-state";
+import { uid } from "uid";
 
 export default function App({ Component, pageProps }) {
+  const [filteredPlants, setFilteredPlants] = useLocalStorageState(
+    "filteredPlants",
+    {
+      defaultValue: plants,
+    }
+  );
+
+  const [balconyPlants, setBalconyPlants] = useLocalStorageState(
+    "balconyPlants",
+    { defaultValue: [] }
+  );
+
+  const [filter, setFilter] = useLocalStorageState("filter", {
+    defaultValue: [],
+  });
+
+  function addPlantToBalcony(plant) {
+    setBalconyPlants([...balconyPlants, { ...plant, uid: uid() }]);
+  }
+
+  function deleteBalconyPlant(plant) {
+    setBalconyPlants(
+      balconyPlants.filter((existingPlant) => {
+        return plant.uid !== existingPlant.uid;
+      })
+    );
+  }
+
   return (
     <>
       <GlobalStyle />
-      <Component {...pageProps} />
+      <Component
+        {...pageProps}
+        setFilteredPlants={setFilteredPlants}
+        filteredPlants={filteredPlants}
+        setFilter={setFilter}
+        filter={filter}
+        balconyPlants={balconyPlants}
+        addPlantToBalcony={addPlantToBalcony}
+        deleteBalconyPlant={deleteBalconyPlant}
+      />
     </>
   );
 }
