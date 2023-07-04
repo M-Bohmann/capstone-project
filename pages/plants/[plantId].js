@@ -1,6 +1,7 @@
 import PlantDetails from "@/components/PlantDetails";
 import { plants } from "@/lib/plants";
 import { useRouter } from "next/router";
+import { useEffect } from "react";
 
 export default function Plant() {
   const router = useRouter();
@@ -9,10 +10,15 @@ export default function Plant() {
 
   const currentPlant = plants.find((plant) => plant.id === parseInt(plantId));
 
+  useEffect(() => {
+    if (!currentPlant) {
+      const timeout = setTimeout(() => {
+        router.push("/plants");
+      }, 3000);
+      return () => clearTimeout(timeout);
+    }
+  }, [currentPlant, router]);
   if (!currentPlant) {
-    setTimeout(() => {
-      router.push("/plants");
-    }, 3000);
     return <h1>Plant was not found.</h1>;
   }
 
