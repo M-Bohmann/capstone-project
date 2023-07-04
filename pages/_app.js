@@ -1,7 +1,8 @@
 import { plants } from "@/lib/plants";
-import GlobalStyle from "../styles";
+import GlobalStyle from "@/styles";
 import useLocalStorageState from "use-local-storage-state";
 import { uid } from "uid";
+import NavBar from "@/components/NavBar";
 
 export default function App({ Component, pageProps }) {
   const [filteredPlants, setFilteredPlants] = useLocalStorageState(
@@ -45,6 +46,7 @@ export default function App({ Component, pageProps }) {
         addPlantToBalcony={addPlantToBalcony}
         deleteBalconyPlant={deleteBalconyPlant}
       />
+      <NavBar />
     </>
   );
 }
