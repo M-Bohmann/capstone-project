@@ -6,7 +6,7 @@ export const StyledHeading = styled.h1`
   top: 0;
   width: 100%;
   margin-top: 0;
-  background-color: #fff;
+  background-color: white;
 `;
 
 export const StyledPlantsList = styled.ul`
@@ -16,7 +16,8 @@ export const StyledPlantsList = styled.ul`
   justify-content: space-evenly;
   padding-left: 0;
   padding-right: 0;
-  padding-top: 55px;
+  padding-top: 105px;
+  padding-bottom: 30px;
 `;
 
 export const StyledParagraph = styled.p`
@@ -24,6 +25,6 @@ export const StyledParagraph = styled.p`
   position: fixed;
   top: 20px;
   width: 100%;
-  padding-bottom: 4px;
-  background-color: #fff;
+  padding-bottom: 60px;
+  background-color: white;
 `;
