@@ -15,7 +15,7 @@ export default function MyBalconyPlants({ balconyPlants, deleteBalconyPlant }) {
             <DeletePlantButton onClick={() => deleteBalconyPlant(plant)}>
               −
             </DeletePlantButton>
-            <Link href={`/plants/${plant.id}`}>
+            <Link href={`/plants/${plant._id}`}>
               <PlantCard plant={plant} />{" "}
             </Link>
           </PlantCardWrapper>

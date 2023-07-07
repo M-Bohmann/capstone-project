@@ -1,9 +1,14 @@
-import { plants } from "@/lib/plants";
 import { useRouter } from "next/router";
 import styled from "styled-components";
+import useSWR from "swr";
 
 export default function Filter({ setFilteredPlants, setFilter, filter }) {
   const router = useRouter();
+  const { data: plants, isLoading } = useSWR("/api/plants");
+
+  if (isLoading) {
+    return <h1>Loading...</h1>;
+  }
 
   function filteredPlants(event) {
     const formData = new FormData(event.target);

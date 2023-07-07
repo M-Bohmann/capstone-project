@@ -6,46 +6,46 @@ import {
 } from "./PlantDetails.styled";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import useSWR from "swr";
 
-export default function PlantDetails({ currentPlant }) {
+export default function PlantDetails() {
   const router = useRouter();
-  const {
-    name,
-    botanicalName,
-    lightRequirements,
-    usageType,
-    growthHeight,
-    hardy,
-    bloomStart,
-    bloomEnd,
-    nectar,
-    pollen,
-    imgUrl,
-  } = currentPlant;
+  const { id } = router.query;
+
+  const { data: plant, isLoading, error } = useSWR(`/api/plants/${id}`);
+
+  if (isLoading || error) {
+    return <h1>Loading...</h1>;
+  }
 
   return (
     <>
       <Head>
-        <title>{name}</title>
+        <title>{plant.name}</title>
       </Head>
       <button onClick={router.back}>← Back</button>
-      <StyledHeading>{name}</StyledHeading>
-      <BotanicalNameParagraph>{botanicalName}</BotanicalNameParagraph>
-      <StyledImage src={imgUrl} alt={name} width={305} height={165} />
+      <StyledHeading>{plant.name}</StyledHeading>
+      <BotanicalNameParagraph>{plant.botanicalName}</BotanicalNameParagraph>
+      <StyledImage
+        src={plant.imgUrl}
+        alt={plant.name}
+        width={305}
+        height={165}
+      />
       <AttributesHeading>Eigenschaften</AttributesHeading>
       <ul>
-        <li>Pflanzenart: {usageType}</li>
-        <li>Standort: {lightRequirements}</li>
-        <li>Wuchshöhe: {`${growthHeight} cm`}</li>
-        <li>Winterhart: {hardy ? "ja" : "nein"}</li>
+        <li>Pflanzenart: {plant.usageType}</li>
+        <li>Standort: {plant.lightRequirements}</li>
+        <li>Wuchshöhe: {`${plant.growthHeight} cm`}</li>
+        <li>Winterhart: {plant.hardy ? "ja" : "nein"}</li>
         <li>
           Blütezeit:{" "}
-          {bloomStart === bloomEnd
-            ? bloomStart
-            : `${bloomStart} bis ${bloomEnd}`}
+          {plant.bloomStart === plant.bloomEnd
+            ? plant.bloomStart
+            : `${plant.bloomStart} bis ${plant.bloomEnd}`}
         </li>
-        <li>Nektar: {nectar}</li>
-        <li>Pollen: {pollen}</li>
+        <li>Nektar: {plant.nectar}</li>
+        <li>Pollen: {plant.pollen}</li>
       </ul>
     </>
   );
