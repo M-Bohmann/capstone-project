@@ -18,34 +18,43 @@ export default function PlantDetails() {
     return <h1>Loading...</h1>;
   }
 
+  const {
+    name,
+    botanicalName,
+    imgUrl,
+    usageType,
+    lightRequirements,
+    growthHeight,
+    hardy,
+    bloomStart,
+    bloomEnd,
+    nectar,
+    pollen,
+  } = plant;
+
   return (
     <>
       <Head>
-        <title>{plant.name}</title>
+        <title>{name}</title>
       </Head>
       <button onClick={router.back}>← Back</button>
-      <StyledHeading>{plant.name}</StyledHeading>
-      <BotanicalNameParagraph>{plant.botanicalName}</BotanicalNameParagraph>
-      <StyledImage
-        src={plant.imgUrl}
-        alt={plant.name}
-        width={305}
-        height={165}
-      />
+      <StyledHeading>{name}</StyledHeading>
+      <BotanicalNameParagraph>{botanicalName}</BotanicalNameParagraph>
+      <StyledImage src={imgUrl} alt={name} width={305} height={165} />
       <AttributesHeading>Eigenschaften</AttributesHeading>
       <ul>
-        <li>Pflanzenart: {plant.usageType}</li>
-        <li>Standort: {plant.lightRequirements}</li>
-        <li>Wuchshöhe: {`${plant.growthHeight} cm`}</li>
-        <li>Winterhart: {plant.hardy ? "ja" : "nein"}</li>
+        <li>Pflanzenart: {usageType}</li>
+        <li>Standort: {lightRequirements}</li>
+        <li>Wuchshöhe: {`${growthHeight} cm`}</li>
+        <li>Winterhart: {hardy ? "ja" : "nein"}</li>
         <li>
           Blütezeit:{" "}
-          {plant.bloomStart === plant.bloomEnd
-            ? plant.bloomStart
-            : `${plant.bloomStart} bis ${plant.bloomEnd}`}
+          {bloomStart === bloomEnd
+            ? bloomStart
+            : `${bloomStart} bis ${bloomEnd}`}
         </li>
-        <li>Nektar: {plant.nectar}</li>
-        <li>Pollen: {plant.pollen}</li>
+        <li>Nektar: {nectar}</li>
+        <li>Pollen: {pollen}</li>
       </ul>
     </>
   );
