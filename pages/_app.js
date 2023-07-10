@@ -3,6 +3,9 @@ import GlobalStyle from "@/styles";
 import useLocalStorageState from "use-local-storage-state";
 import { uid } from "uid";
 import NavBar from "@/components/NavBar";
+import { SWRConfig } from "swr";
+
+const fetcher = (url) => fetch(url).then((response) => response.json());
 
 export default function App({ Component, pageProps }) {
   const [filteredPlants, setFilteredPlants] = useLocalStorageState(
@@ -36,17 +39,19 @@ export default function App({ Component, pageProps }) {
   return (
     <>
       <GlobalStyle />
-      <Component
-        {...pageProps}
-        setFilteredPlants={setFilteredPlants}
-        filteredPlants={filteredPlants}
-        setFilter={setFilter}
-        filter={filter}
-        balconyPlants={balconyPlants}
-        addPlantToBalcony={addPlantToBalcony}
-        deleteBalconyPlant={deleteBalconyPlant}
-      />
-      <NavBar />
+      <SWRConfig value={{ fetcher }}>
+        <Component
+          {...pageProps}
+          setFilteredPlants={setFilteredPlants}
+          filteredPlants={filteredPlants}
+          setFilter={setFilter}
+          filter={filter}
+          balconyPlants={balconyPlants}
+          addPlantToBalcony={addPlantToBalcony}
+          deleteBalconyPlant={deleteBalconyPlant}
+        />
+        <NavBar />
+      </SWRConfig>
     </>
   );
 }

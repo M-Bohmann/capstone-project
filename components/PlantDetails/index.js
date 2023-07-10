@@ -6,22 +6,31 @@ import {
 } from "./PlantDetails.styled";
 import Head from "next/head";
 import { useRouter } from "next/router";
+import useSWR from "swr";
 
-export default function PlantDetails({ currentPlant }) {
+export default function PlantDetails() {
   const router = useRouter();
+  const { id } = router.query;
+
+  const { data: plant, isLoading, error } = useSWR(`/api/plants/${id}`);
+
+  if (isLoading || error) {
+    return <h1>Loading...</h1>;
+  }
+
   const {
     name,
     botanicalName,
-    lightRequirements,
+    imgUrl,
     usageType,
+    lightRequirements,
     growthHeight,
     hardy,
     bloomStart,
     bloomEnd,
     nectar,
     pollen,
-    imgUrl,
-  } = currentPlant;
+  } = plant;
 
   return (
     <>
