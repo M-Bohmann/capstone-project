@@ -76,7 +76,7 @@ export default function Filter({ setFilteredPlants, setFilter, filter }) {
   );
 }
 
-const StyledForm = styled.form`
+export const StyledForm = styled.form`
   display: flex;
   flex-direction: column;
   align-items: center;
