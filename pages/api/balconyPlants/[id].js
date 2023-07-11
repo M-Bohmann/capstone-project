@@ -13,4 +13,9 @@ export default async function handler(request, response) {
 
     response.status(200).json(balconyPlant);
   }
+
+  if (request.method === "DELETE") {
+    await BalconyPlant.findByIdAndDelete(id);
+    response.status(200).json({ status: `Plant successfully deleted.` });
+  }
 }
