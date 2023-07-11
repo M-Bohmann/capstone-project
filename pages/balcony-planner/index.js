@@ -13,6 +13,9 @@ export default function BalconyPlantsPlanner({
     <>
       <StyledHeading>Balkon Pflanzenplaner</StyledHeading>
       <h2>Mein Balkon</h2>
+      <Link href="balcony-planner/addUserPlant">
+        <button>+ eigene Pflanzen</button>
+      </Link>
       <MyBalconyPlants
         balconyPlants={balconyPlants}
         deleteBalconyPlant={deleteBalconyPlant}
