@@ -58,8 +58,8 @@ export default function PlantDetails() {
         <li>Wuchshöhe: {growthHeight && `${growthHeight} cm`}</li>
         <li>Winterhart: {hardy}</li>
         <li>
-          Blütezeit:{" "}
-          {bloomStart === bloomEnd
+          Blütezeit:
+          {bloomStart === bloomEnd || !bloomEnd
             ? bloomStart
             : `${bloomStart} bis ${bloomEnd}`}
         </li>

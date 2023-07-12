@@ -3,6 +3,7 @@ import { StyledForm } from "./filter";
 import useSWR from "swr";
 import styled from "styled-components";
 import Link from "next/link";
+import { months } from "@/lib/plants";
 
 export default function AddUserPlant() {
   const router = useRouter();
@@ -38,9 +39,9 @@ export default function AddUserPlant() {
         <input id="botanicalName" name="botanicalName" type="text" />
         <StyledFieldset>
           <legend>Eigenschaften</legend>
-          <label htmlFor="plantType">Pflanzenart:</label>
-          <select id="plantType" name="plantType">
-            <option>Alle</option>
+          <label htmlFor="usageType">Pflanzenart:</label>
+          <select id="usageType" name="usageType">
+            <option></option>
             <option>Nutzpflanze</option>
             <option>Zierpflanze</option>
           </select>
@@ -62,10 +63,39 @@ export default function AddUserPlant() {
             <option>ja</option>
             <option>nein</option>
           </select>
+          <label htmlFor="bloomStart">Blütezeit:</label>
+          <select id="bloomStart" name="bloomStart">
+            {months.map((month) => (
+              <option key={month}>{month}</option>
+            ))}
+          </select>
+          bis
+          <select id="bloomEnd" name="bloomEnd">
+            {months.map((month) => (
+              <option key={month}>{month}</option>
+            ))}
+          </select>
+          <label htmlFor="nectar">Nektar:</label>
+          <select id="nectar" name="nectar">
+            <option></option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+          </select>
+          <label htmlFor="pollen">Pollen:</label>
+          <select id="pollen" name="pollen">
+            <option></option>
+            <option>1</option>
+            <option>2</option>
+            <option>3</option>
+            <option>4</option>
+          </select>
         </StyledFieldset>
-        <label htmlFor="notes">Notizen:</label>
-        <textarea id="notes" name="notes" type="text" />
+        <label htmlFor="note">Notizen:</label>
+        <textarea id="note" name="note" type="text" />
         <button type="submit">Speichern</button>
+
         <Link href="/balcony-planner">Abbrechen</Link>
       </StyledForm>
     </>
