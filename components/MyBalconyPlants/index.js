@@ -5,7 +5,7 @@ import {
   PlantCardWrapper,
 } from "./MyBalconyPlants.styled";
 import Link from "next/link";
-import useSWR from "swr";
+import useSWR, { mutate } from "swr";
 
 export default function MyBalconyPlants() {
   const { data: balconyPlants } = useSWR("/api/balconyPlants", {
@@ -16,6 +16,9 @@ export default function MyBalconyPlants() {
     const response = await fetch(`/api/balconyPlants/${id}`, {
       method: "DELETE",
     });
+    if (response.ok) {
+      mutate("/api/balconyPlants");
+    }
   }
 
   return (
@@ -26,7 +29,13 @@ export default function MyBalconyPlants() {
             <DeletePlantButton onClick={() => handleDelete(plant._id)}>
               −
             </DeletePlantButton>
-            <Link href={`/plants/${plant._id}`}>
+            <Link
+              href={
+                plant.isUserPlant
+                  ? `/userPlants/${plant._id}`
+                  : `/plants/${plant._id}`
+              }
+            >
               <PlantCard plant={plant} />
             </Link>
           </PlantCardWrapper>
