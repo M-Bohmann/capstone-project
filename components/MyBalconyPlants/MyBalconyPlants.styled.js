@@ -15,7 +15,7 @@ export const MyBalconyPlantsList = styled.ul`
 export const DeletePlantButton = styled.button`
   position: absolute;
   right: 0;
-  bottom: 10.6rem;
+  top: -0.4rem;
   background-color: transparent;
   border: none;
   color: red;

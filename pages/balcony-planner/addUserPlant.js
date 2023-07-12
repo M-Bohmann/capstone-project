@@ -69,7 +69,7 @@ export default function AddUserPlant() {
               <option key={month}>{month}</option>
             ))}
           </select>
-          bis
+          <span>bis</span>
           <select id="bloomEnd" name="bloomEnd">
             {months.map((month) => (
               <option key={month}>{month}</option>
