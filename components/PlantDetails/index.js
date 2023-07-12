@@ -11,8 +11,16 @@ import useSWR from "swr";
 export default function PlantDetails() {
   const router = useRouter();
   const { id } = router.query;
+  const path = router.pathname;
 
-  const { data: plant, isLoading, error } = useSWR(`/api/plants/${id}`);
+  const site = path.split("/")[1];
+  const plantCollection = site === "plants" ? "plants" : "balconyPlants";
+
+  const {
+    data: plant,
+    isLoading,
+    error,
+  } = useSWR(`/api/${plantCollection}/${id}`);
 
   if (isLoading || error) {
     return <h1>Loading...</h1>;
@@ -30,6 +38,8 @@ export default function PlantDetails() {
     bloomEnd,
     nectar,
     pollen,
+    note,
+    isUserPlant,
   } = plant;
 
   return (
@@ -45,8 +55,8 @@ export default function PlantDetails() {
       <ul>
         <li>Pflanzenart: {usageType}</li>
         <li>Standort: {lightRequirements}</li>
-        <li>Wuchshöhe: {`${growthHeight} cm`}</li>
-        <li>Winterhart: {hardy ? "ja" : "nein"}</li>
+        <li>Wuchshöhe: {growthHeight && `${growthHeight} cm`}</li>
+        <li>Winterhart: {hardy}</li>
         <li>
           Blütezeit:{" "}
           {bloomStart === bloomEnd
@@ -55,6 +65,7 @@ export default function PlantDetails() {
         </li>
         <li>Nektar: {nectar}</li>
         <li>Pollen: {pollen}</li>
+        {isUserPlant && <li>Notiz: {note}</li>}
       </ul>
     </>
   );
