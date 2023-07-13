@@ -22,8 +22,10 @@ export default function PlantDetails() {
     error,
   } = useSWR(`/api/${plantCollection}/${id}`);
 
-  if (isLoading || error) {
-    return <h1>Loading...</h1>;
+  if (isLoading) {
+    return <h2>Wird geladen...</h2>;
+  } else if (error) {
+    return <h2>Pflanze nicht gefunden.</h2>;
   }
 
   const {
@@ -63,8 +65,8 @@ export default function PlantDetails() {
             ? bloomStart
             : `${bloomStart} bis ${bloomEnd}`}
         </li>
-        <li>Nektar: {nectar}</li>
-        <li>Pollen: {pollen}</li>
+        <li>Nektargehalt: {nectar}</li>
+        <li>Pollengehalt: {pollen}</li>
         {isUserPlant && <li>Notiz: {note}</li>}
       </ul>
     </>
