@@ -95,7 +95,6 @@ export default function AddUserPlant() {
         <label htmlFor="note">Notizen:</label>
         <textarea id="note" name="note" type="text" />
         <button type="submit">Speichern</button>
-
         <Link href="/balcony-planner">Abbrechen</Link>
       </StyledForm>
     </>
