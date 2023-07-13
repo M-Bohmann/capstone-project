@@ -24,9 +24,10 @@ export default function FilteredPlantsList({ filteredPlants }) {
       mutate();
     }
   }
-  if (!filteredPlants) {
-    return <h1>Loading...</h1>;
+  if (filteredPlants.length === 0) {
+    return <h2>Es wurden keine Pflanzen zu deinen Kriterien gefunden.</h2>;
   }
+
   return (
     <HorizontalScrollList>
       {filteredPlants.map((plant) => (
