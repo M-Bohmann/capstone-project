@@ -75,7 +75,7 @@ export default function AddUserPlant() {
               <option key={month}>{month}</option>
             ))}
           </select>
-          <label htmlFor="nectar">Nektar:</label>
+          <label htmlFor="nectar">Nektargehalt:</label>
           <select id="nectar" name="nectar">
             <option></option>
             <option>1</option>
@@ -83,7 +83,7 @@ export default function AddUserPlant() {
             <option>3</option>
             <option>4</option>
           </select>
-          <label htmlFor="pollen">Pollen:</label>
+          <label htmlFor="pollen">Pollengehalt:</label>
           <select id="pollen" name="pollen">
             <option></option>
             <option>1</option>
