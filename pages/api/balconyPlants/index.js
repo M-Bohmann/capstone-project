@@ -7,11 +7,7 @@ export default async function handler(request, response) {
   if (request.method === "GET") {
     const balconyPlants = await BalconyPlant.find();
     response.status(200).json(balconyPlants);
-  } else {
-    response.status(405).json({ message: "Method not allowed" });
-  }
-
-  if (request.method === "POST") {
+  } else if (request.method === "POST") {
     try {
       const balconyPlantData = request.body;
       await BalconyPlant.create(balconyPlantData);
@@ -20,5 +16,7 @@ export default async function handler(request, response) {
     } catch (error) {
       response.status(400).json({ error: error.message });
     }
+  } else {
+    response.status(405).json({ message: "Method not allowed" });
   }
 }

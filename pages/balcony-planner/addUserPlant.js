@@ -25,7 +25,7 @@ export default function AddUserPlant() {
 
     if (response.ok) {
       mutate();
-      router.back();
+      router.push("/balcony-planner");
     }
   }
 
