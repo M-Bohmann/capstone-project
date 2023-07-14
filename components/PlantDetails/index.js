@@ -8,6 +8,7 @@ import Head from "next/head";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import useSWR from "swr";
+import UserIcon from "../UserIcon";
 
 export default function PlantDetails() {
   const router = useRouter();
@@ -51,6 +52,7 @@ export default function PlantDetails() {
         <title>{name}</title>
       </Head>
       <button onClick={router.back}>← Back</button>
+      {isUserPlant && <UserIcon />}
       <StyledHeading>{name}</StyledHeading>
       <BotanicalNameParagraph>{botanicalName}</BotanicalNameParagraph>
       <StyledImage src={imgUrl} alt={name} width={305} height={165} />
