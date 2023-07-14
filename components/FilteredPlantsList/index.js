@@ -24,7 +24,7 @@ export default function FilteredPlantsList({ filteredPlants }) {
       mutate();
     }
   }
-  if (filteredPlants.length === 0) {
+  if (!filteredPlants || filteredPlants.length === 0) {
     return <h2>Es wurden keine Pflanzen zu deinen Kriterien gefunden.</h2>;
   }
 
