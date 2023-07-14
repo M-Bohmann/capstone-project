@@ -1,4 +1,5 @@
 import PlantCard from "../PlantCard";
+import UserIcon from "../UserIcon";
 import {
   DeletePlantButton,
   MyBalconyPlantsList,
@@ -29,6 +30,7 @@ export default function MyBalconyPlants() {
             <DeletePlantButton onClick={() => handleDelete(plant._id)}>
               −
             </DeletePlantButton>
+            {plant.isUserPlant && <UserIcon />}
             <Link
               href={
                 plant.isUserPlant

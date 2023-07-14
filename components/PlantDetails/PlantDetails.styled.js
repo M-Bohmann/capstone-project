@@ -1,5 +1,6 @@
 import Image from "next/image";
 import styled from "styled-components";
+import UserIcon from "../UserIcon";
 
 export const StyledHeading = styled.h1`
   text-align: center;
