@@ -14,6 +14,12 @@ export default async function handler(request, response) {
     response.status(200).json(balconyPlant);
   }
 
+  if (request.method === "PUT") {
+    const newBalconyPlantData = request.body;
+    await BalconyPlant.findByIdAndUpdate(id, newBalconyPlantData);
+    response.status(200).json({ status: "Plant updated" });
+  }
+
   if (request.method === "DELETE") {
     await BalconyPlant.findByIdAndDelete(id);
     response.status(200).json({ status: `Plant successfully deleted.` });
