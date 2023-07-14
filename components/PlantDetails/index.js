@@ -5,6 +5,7 @@ import {
   StyledImage,
 } from "./PlantDetails.styled";
 import Head from "next/head";
+import Link from "next/link";
 import { useRouter } from "next/router";
 import useSWR from "swr";
 
@@ -69,6 +70,7 @@ export default function PlantDetails() {
         <li>Pollengehalt: {pollen}</li>
         {isUserPlant && <li>Notiz: {note}</li>}
       </ul>
+      {isUserPlant && <Link href={`/userPlants/${id}/edit`}>Bearbeiten</Link>}
     </>
   );
 }
