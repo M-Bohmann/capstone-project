@@ -11,11 +11,21 @@ import useSWR from "swr";
 export default function PlantDetails() {
   const router = useRouter();
   const { id } = router.query;
+  const path = router.pathname;
 
-  const { data: plant, isLoading, error } = useSWR(`/api/plants/${id}`);
+  const site = path.split("/")[1];
+  const plantCollection = site === "plants" ? "plants" : "balconyPlants";
 
-  if (isLoading || error) {
-    return <h1>Loading...</h1>;
+  const {
+    data: plant,
+    isLoading,
+    error,
+  } = useSWR(`/api/${plantCollection}/${id}`);
+
+  if (isLoading) {
+    return <h2>Wird geladen...</h2>;
+  } else if (error) {
+    return <h2>Pflanze nicht gefunden.</h2>;
   }
 
   const {
@@ -30,6 +40,8 @@ export default function PlantDetails() {
     bloomEnd,
     nectar,
     pollen,
+    note,
+    isUserPlant,
   } = plant;
 
   return (
@@ -45,16 +57,17 @@ export default function PlantDetails() {
       <ul>
         <li>Pflanzenart: {usageType}</li>
         <li>Standort: {lightRequirements}</li>
-        <li>Wuchshöhe: {`${growthHeight} cm`}</li>
-        <li>Winterhart: {hardy ? "ja" : "nein"}</li>
+        <li>Wuchshöhe: {growthHeight && `${growthHeight} cm`}</li>
+        <li>Winterhart: {hardy}</li>
         <li>
-          Blütezeit:{" "}
-          {bloomStart === bloomEnd
+          Blütezeit:
+          {bloomStart === bloomEnd || !bloomEnd
             ? bloomStart
             : `${bloomStart} bis ${bloomEnd}`}
         </li>
-        <li>Nektar: {nectar}</li>
-        <li>Pollen: {pollen}</li>
+        <li>Nektargehalt: {nectar}</li>
+        <li>Pollengehalt: {pollen}</li>
+        {isUserPlant && <li>Notiz: {note}</li>}
       </ul>
     </>
   );
