@@ -5,11 +5,7 @@ import useSWR, { mutate } from "swr";
 export default function EditUserPlants() {
   const router = useRouter();
   const { id } = router.query;
-  const {
-    data: userPlant,
-    isLoading,
-    error,
-  } = useSWR(`/api/balconyPlants/${id}`);
+  const { data: userPlant } = useSWR(`/api/balconyPlants/${id}`);
 
   async function handleEdit(event) {
     event.preventDefault();
@@ -27,7 +23,7 @@ export default function EditUserPlants() {
       mutate();
       router.back();
     }
-    console.log(userPlant);
   }
+
   return <UserPlantForm onSubmit={handleEdit} defaultValue={userPlant} />;
 }
