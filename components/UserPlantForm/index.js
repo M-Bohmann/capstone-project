@@ -2,11 +2,13 @@ import { StyledForm } from "@/pages/balcony-planner/filter";
 import Link from "next/link";
 import { StyledFieldset } from "./UserPlantForm.styled";
 import { months } from "@/lib/plants";
+import ImageUploadForm from "../ImageUploadForm";
 
 export default function UserPlantForm({ onSubmit, defaultValue }) {
   return (
     <>
       <h1>Deine Pflanze</h1>
+      <ImageUploadForm />
       <StyledForm onSubmit={onSubmit}>
         <label htmlFor="name">Name:</label>
         <input
