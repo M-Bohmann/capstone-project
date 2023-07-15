@@ -34,8 +34,6 @@ export default async function handler(req, res) {
     // call our cloudinary uploader with the required arguments
     const result = await cloudinary.v2.uploader.upload(filepath, {
       public_id: newFilename,
-      // OPTIONAL: if you want to add tags for your file, add another input field to your form and pass the values here like e.g.
-      tags: ["some", "example", "tag"],
     });
     console.log("API: response from cloudinary: ", result);
     // return our just uploaded image result from cloudinary upload

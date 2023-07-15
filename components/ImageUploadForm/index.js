@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import useSWR from "swr";
 import { Form, StyledButton, StyledContainer } from "./ImageUploadForm.styled";
 
-export default function ImageUploadForm() {
+export default function ImageUploadForm({ onUpload }) {
   const { mutate } = useSWR("/api/images/");
   // We define some states to give some feedback to the user what happened to our upload
   const [uploadStatus, setUploadStatus] = useState("");
@@ -21,10 +21,13 @@ export default function ImageUploadForm() {
       });
       // once the file is uploaded (= the promise in our api upload is resolved)
       if (response.status === 201) {
+        const result = await response.json();
+        const url = result.url;
         // we call mutate to refresh our image data
         mutate();
         // and set a successful state
         setUploadStatus("Upload complete!");
+        onUpload(url);
       }
     } catch (error) {
       // in case of error, we set the state accordingly
@@ -34,10 +37,10 @@ export default function ImageUploadForm() {
 
   return (
     <StyledContainer>
-      <h2>Image Upload</h2>
+      <h2>Bild hochladen</h2>
       <Form onSubmit={submitImage}>
         <input type="file" name="file" />
-        <StyledButton type="submit">Upload</StyledButton>
+        <StyledButton type="submit">Hochladen</StyledButton>
         <p>{uploadStatus}</p>
         {/*we use conditional rendering */}
         {error && <p>{error.message}</p>}

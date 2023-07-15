@@ -3,13 +3,17 @@ import Link from "next/link";
 import { StyledFieldset } from "./UserPlantForm.styled";
 import { months } from "@/lib/plants";
 import ImageUploadForm from "../ImageUploadForm";
+import { useState } from "react";
 
 export default function UserPlantForm({ onSubmit, defaultValue }) {
+  const [uploadImageUrl, setUploadImageUrl] = useState(null);
+
   return (
     <>
       <h1>Deine Pflanze</h1>
-      <ImageUploadForm />
+      <ImageUploadForm onUpload={setUploadImageUrl} />
       <StyledForm onSubmit={onSubmit}>
+        <input type="hidden" name="imgUrl" id="imgUrl" value={uploadImageUrl} />
         <label htmlFor="name">Name:</label>
         <input
           id="name"
