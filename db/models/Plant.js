@@ -5,7 +5,7 @@ const { Schema } = mongoose;
 const plantSchema = new Schema({
   name: String,
   botanicalName: String,
-  lightRequirements: String,
+  lightRequirements: Array,
   usageType: String,
   growthHeight: Number,
   hardy: String,

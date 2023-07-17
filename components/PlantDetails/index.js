@@ -60,7 +60,9 @@ export default function PlantDetails() {
       <AttributesHeading>Eigenschaften</AttributesHeading>
       <ul>
         <li>Pflanzenart: {usageType}</li>
-        <li>Standort: {lightRequirements}</li>
+        {lightRequirements && lightRequirements.length > 0 && (
+          <li>Standort: {lightRequirements.join(", ")}</li>
+        )}
         <li>Wuchshöhe: {growthHeight && `${growthHeight} cm`}</li>
         <li>Winterhart: {hardy}</li>
         <li>

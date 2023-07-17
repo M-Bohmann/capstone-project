@@ -5,7 +5,7 @@ const { Schema } = mongoose;
 const balconyPlantSchema = new Schema({
   name: { type: String, required: true },
   botanicalName: String,
-  lightRequirements: String,
+  lightRequirements: Array,
   usageType: String,
   growthHeight: Number,
   hardy: String,
