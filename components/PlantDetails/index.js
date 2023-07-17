@@ -47,6 +47,13 @@ export default function PlantDetails() {
     isUserPlant,
   } = plant;
 
+  const pollenNectarLevel = {
+    1: "niedrig",
+    2: "wenig",
+    3: "mäßig",
+    4: "viel",
+  };
+
   return (
     <>
       <Head>
@@ -71,8 +78,8 @@ export default function PlantDetails() {
             ? bloomStart
             : `${bloomStart} bis ${bloomEnd}`}
         </li>
-        <li>Nektargehalt: {nectar}</li>
-        <li>Pollengehalt: {pollen}</li>
+        <li>Nektargehalt: {pollenNectarLevel[nectar]}</li>
+        <li>Pollengehalt: {pollenNectarLevel[pollen]}</li>
         {isUserPlant && <li>Notiz: {note}</li>}
       </ul>
       {isUserPlant && <Link href={`/userPlants/${id}/edit`}>Bearbeiten</Link>}
