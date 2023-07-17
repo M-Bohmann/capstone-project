@@ -13,7 +13,14 @@ export default function UserPlantForm({ onSubmit, defaultValue }) {
       <h1>Deine Pflanze</h1>
       <ImageUploadForm onUpload={setUploadImageUrl} />
       <StyledForm onSubmit={onSubmit}>
-        <input type="hidden" name="imgUrl" id="imgUrl" value={uploadImageUrl} />
+        {uploadImageUrl && (
+          <input
+            type="hidden"
+            name="imgUrl"
+            id="imgUrl"
+            value={uploadImageUrl}
+          />
+        )}
         <label htmlFor="name">Name:</label>
         <input
           id="name"
