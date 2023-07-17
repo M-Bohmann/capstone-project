@@ -1,4 +1,3 @@
-import { months } from "@/lib/plants";
 import { useRouter } from "next/router";
 import styled from "styled-components";
 import useSWR from "swr";
@@ -21,7 +20,9 @@ export default function Filter({ setFilteredPlants, setFilter, filter }) {
         (data.lightRequirements === "" ||
           plant.lightRequirements === data.lightRequirements) &&
         (data.growthHeight === "" || data.growthHeight >= plant.growthHeight) &&
-        (data.hardy === "" || plant.hardy === data.hardy)
+        (data.hardy === "" || plant.hardy === data.hardy) &&
+        (data.nectar === "" || plant.nectar >= data.nectar) &&
+        (data.pollen === "" || plant.pollen >= data.pollen)
       );
     });
     return filteredPlants;
@@ -71,37 +72,21 @@ export default function Filter({ setFilteredPlants, setFilter, filter }) {
           <option>ja</option>
           <option>nein</option>
         </select>
-        <label htmlFor="bloomStart">Blütezeit:</label>
-        <select
-          id="bloomStart"
-          name="bloomStart"
-          defaultValue={filter.bloomStart}
-        >
-          {months.map((month) => (
-            <option key={month}>{month}</option>
-          ))}
-        </select>
-        <span>bis</span>
-        <select id="bloomEnd" name="bloomEnd" defaultValue={filter.bloomEnd}>
-          {months.map((month) => (
-            <option key={month}>{month}</option>
-          ))}
-        </select>
-        <label htmlFor="nectar">Nektargehalt:</label>
+        <label htmlFor="nectar">Mindest Nektargehalt:</label>
         <select id="nectar" name="nectar" defaultValue={filter.nectar}>
           <option></option>
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
+          <option value={1}>niedrig</option>
+          <option value={2}>wenig</option>
+          <option value={3}>mäßig</option>
+          <option value={4}>viel</option>
         </select>
-        <label htmlFor="pollen">Pollengehalt:</label>
+        <label htmlFor="pollen">Mindest Pollengehalt:</label>
         <select id="pollen" name="pollen" defaultValue={filter.pollen}>
           <option></option>
-          <option>1</option>
-          <option>2</option>
-          <option>3</option>
-          <option>4</option>
+          <option value={1}>niedrig</option>
+          <option value={2}>wenig</option>
+          <option value={3}>mäßig</option>
+          <option value={4}>viel</option>
         </select>
         <button type="submit">Speichern</button>
       </StyledForm>

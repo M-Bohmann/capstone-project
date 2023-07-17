@@ -25,9 +25,10 @@ export default function PlantDetails() {
   } = useSWR(`/api/${plantCollection}/${id}`);
 
   if (isLoading) {
-    return <h2>Wird geladen...</h2>;
-  } else if (error) {
-    return <h2>Pflanze nicht gefunden.</h2>;
+    return <div>Wird geladen...</div>;
+  }
+  if (error) {
+    return <div>{error.message}</div>;
   }
 
   const {
