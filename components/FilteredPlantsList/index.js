@@ -8,7 +8,11 @@ import {
 import { PlantCardWrapper } from "../MyBalconyPlants/MyBalconyPlants.styled";
 import useSWR from "swr";
 
-export default function FilteredPlantsList({ filteredPlants }) {
+export default function FilteredPlantsList({
+  filteredPlants,
+  setFilteredPlants,
+}) {
+  const { data: plants, isLoading, error } = useSWR("/api/plants");
   const { mutate } = useSWR("/api/balconyPlants");
 
   async function handleClick(plant) {
@@ -24,7 +28,21 @@ export default function FilteredPlantsList({ filteredPlants }) {
       mutate();
     }
   }
-  if (!filteredPlants || filteredPlants.length === 0) {
+
+  if (isLoading) {
+    return <div>Pflanzen werden geladen...</div>;
+  }
+
+  if (error) {
+    return <div>{error.message}</div>;
+  }
+
+  if (!filteredPlants) {
+    setFilteredPlants(plants);
+    return <div>Pflanzen werden geladen...</div>;
+  }
+
+  if (filteredPlants.length === 0) {
     return <h2>Es wurden keine Pflanzen zu deinen Kriterien gefunden.</h2>;
   }
 
