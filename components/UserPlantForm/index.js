@@ -2,12 +2,25 @@ import { StyledForm } from "@/pages/balcony-planner/filter";
 import Link from "next/link";
 import { StyledFieldset } from "./UserPlantForm.styled";
 import { months } from "@/lib/plants";
+import ImageUploadForm from "../ImageUploadForm";
+import { useState } from "react";
 
 export default function UserPlantForm({ onSubmit, defaultValue }) {
+  const [uploadImageUrl, setUploadImageUrl] = useState(undefined);
+
   return (
     <>
       <h1>Deine Pflanze</h1>
+      <ImageUploadForm onUpload={setUploadImageUrl} />
       <StyledForm onSubmit={onSubmit}>
+        {uploadImageUrl && (
+          <input
+            type="hidden"
+            name="imgUrl"
+            id="imgUrl"
+            value={uploadImageUrl}
+          />
+        )}
         <label htmlFor="name">Name:</label>
         <input
           id="name"
@@ -85,18 +98,18 @@ export default function UserPlantForm({ onSubmit, defaultValue }) {
           <label htmlFor="nectar">Nektargehalt:</label>
           <select id="nectar" name="nectar" defaultValue={defaultValue?.nectar}>
             <option></option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
+            <option value={1}>niedrig</option>
+            <option value={2}>wenig</option>
+            <option value={3}>mäßig</option>
+            <option value={4}>viel</option>
           </select>
           <label htmlFor="pollen">Pollengehalt:</label>
           <select id="pollen" name="pollen" defaultValue={defaultValue?.pollen}>
             <option></option>
-            <option>1</option>
-            <option>2</option>
-            <option>3</option>
-            <option>4</option>
+            <option value={1}>niedrig</option>
+            <option value={2}>wenig</option>
+            <option value={3}>mäßig</option>
+            <option value={4}>viel</option>
           </select>
         </StyledFieldset>
         <label htmlFor="note">Notizen:</label>

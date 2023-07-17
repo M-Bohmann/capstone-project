@@ -4,14 +4,14 @@ import Link from "next/link";
 import useSWR from "swr";
 
 export default function PlantsList({ searchedPlants, searchInput }) {
-  const { data: plants, isLoading } = useSWR("/api/plants");
+  const { data: plants, isLoading, error } = useSWR("/api/plants");
 
   if (isLoading) {
-    return <h1>Loading...</h1>;
+    return <div>Wird geladen...</div>;
   }
 
-  if (!plants) {
-    return;
+  if (error) {
+    return <div>{error.message}</div>;
   }
 
   return (

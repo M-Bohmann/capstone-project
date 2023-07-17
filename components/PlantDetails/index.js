@@ -25,9 +25,10 @@ export default function PlantDetails() {
   } = useSWR(`/api/${plantCollection}/${id}`);
 
   if (isLoading) {
-    return <h2>Wird geladen...</h2>;
-  } else if (error) {
-    return <h2>Pflanze nicht gefunden.</h2>;
+    return <div>Wird geladen...</div>;
+  }
+  if (error) {
+    return <div>{error.message}</div>;
   }
 
   const {
@@ -46,6 +47,13 @@ export default function PlantDetails() {
     isUserPlant,
   } = plant;
 
+  const pollenNectarLevel = {
+    1: "niedrig",
+    2: "wenig",
+    3: "mäßig",
+    4: "viel",
+  };
+
   return (
     <>
       <Head>
@@ -59,7 +67,9 @@ export default function PlantDetails() {
       <AttributesHeading>Eigenschaften</AttributesHeading>
       <ul>
         <li>Pflanzenart: {usageType}</li>
-        <li>Standort: {lightRequirements}</li>
+        {lightRequirements && lightRequirements.length > 0 && (
+          <li>Standort: {lightRequirements.join(", ")}</li>
+        )}
         <li>Wuchshöhe: {growthHeight && `${growthHeight} cm`}</li>
         <li>Winterhart: {hardy}</li>
         <li>
@@ -68,8 +78,8 @@ export default function PlantDetails() {
             ? bloomStart
             : `${bloomStart} bis ${bloomEnd}`}
         </li>
-        <li>Nektargehalt: {nectar}</li>
-        <li>Pollengehalt: {pollen}</li>
+        <li>Nektargehalt: {pollenNectarLevel[nectar]}</li>
+        <li>Pollengehalt: {pollenNectarLevel[pollen]}</li>
         {isUserPlant && <li>Notiz: {note}</li>}
       </ul>
       {isUserPlant && <Link href={`/userPlants/${id}/edit`}>Bearbeiten</Link>}

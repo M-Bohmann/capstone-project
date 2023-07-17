@@ -3,7 +3,6 @@ import useLocalStorageState from "use-local-storage-state";
 import { uid } from "uid";
 import NavBar from "@/components/NavBar";
 import { SWRConfig } from "swr";
-import { useEffect } from "react";
 
 const fetcher = (url) => fetch(url).then((response) => response.json());
 
@@ -11,7 +10,7 @@ export default function App({ Component, pageProps }) {
   const [filteredPlants, setFilteredPlants] = useLocalStorageState(
     "filteredPlants",
     {
-      defaultValue: [],
+      defaultValue: undefined,
     }
   );
 
@@ -35,16 +34,6 @@ export default function App({ Component, pageProps }) {
       })
     );
   }
-
-  async function fetchPlants() {
-    const response = await fetch("/api/plants");
-    const data = await response.json();
-    setFilteredPlants(data);
-  }
-
-  useEffect(() => {
-    fetchPlants();
-  });
 
   return (
     <>
