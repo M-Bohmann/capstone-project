@@ -1,6 +1,5 @@
 import PlantCard from "../PlantCard";
-import { StyledPlantsList } from "./PlantsList.styled";
-import Link from "next/link";
+import { DetailsPageLink, StyledPlantsList } from "./PlantsList.styled";
 import useSWR from "swr";
 
 export default function PlantsList({ searchedPlants, searchInput }) {
@@ -19,17 +18,17 @@ export default function PlantsList({ searchedPlants, searchInput }) {
       {searchInput === "" ? (
         plants.map((plant) => (
           <li key={plant._id}>
-            <Link href={`/plants/${plant._id}`}>
+            <DetailsPageLink href={`/plants/${plant._id}`}>
               <PlantCard plant={plant} />
-            </Link>
+            </DetailsPageLink>
           </li>
         ))
       ) : searchedPlants.length > 0 ? (
         searchedPlants.map((plant) => (
           <li key={plant._id}>
-            <Link href={`/plants/${plant._id}`}>
+            <DetailsPageLink href={`/plants/${plant._id}`}>
               <PlantCard plant={plant} />
-            </Link>
+            </DetailsPageLink>
           </li>
         ))
       ) : (
