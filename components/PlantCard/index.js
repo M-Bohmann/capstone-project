@@ -9,7 +9,12 @@ export default function PlantCard({ plant }) {
   return (
     <>
       <PlantCardImageContainer>
-        <PlantCardImage src={plant.imgUrl} alt={plant.name} fill={true} />
+        <PlantCardImage
+          src={plant.imgUrl}
+          alt={plant.name}
+          fill
+          sizes="150px"
+        />
       </PlantCardImageContainer>
       <PlantNameParagraph>{plant.name}</PlantNameParagraph>
       <BotanicalNameParagraph>{plant.botanicalName}</BotanicalNameParagraph>
