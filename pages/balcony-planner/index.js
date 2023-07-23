@@ -3,10 +3,7 @@ import Link from "next/link";
 import styled from "styled-components";
 import MyBalconyPlants from "@/components/MyBalconyPlants";
 
-export default function BalconyPlantsPlanner({
-  filteredPlants,
-  setFilteredPlants,
-}) {
+export default function BalconyPlantsPlanner({ filter }) {
   return (
     <>
       <h1>Balkon Pflanzenplaner</h1>
@@ -30,10 +27,7 @@ export default function BalconyPlantsPlanner({
           </FilterSvg>
         </Link>
       </StyledContainer>
-      <FilteredPlantsList
-        filteredPlants={filteredPlants}
-        setFilteredPlants={setFilteredPlants}
-      />
+      <FilteredPlantsList filter={filter} />
     </>
   );
 }

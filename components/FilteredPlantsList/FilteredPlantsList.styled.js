@@ -20,3 +20,10 @@ export const AddPlantButton = styled.button`
   background-color: transparent;
   border: none;
 `;
+
+export const AddPlantSvg = styled.svg`
+  font-size: 28px;
+  fill: darkgreen;
+  stroke: white;
+  stroke-width: 1.4px;
+`;

@@ -6,28 +6,22 @@ import { SWRConfig } from "swr";
 const fetcher = (url) => fetch(url).then((response) => response.json());
 
 export default function App({ Component, pageProps }) {
-  const [filteredPlants, setFilteredPlants] = useLocalStorageState(
-    "filteredPlants",
-    {
-      defaultValue: undefined,
-    }
-  );
-
   const [filter, setFilter] = useLocalStorageState("filter", {
-    defaultValue: [],
+    defaultValue: {
+      usageType: "",
+      lightRequirements: "",
+      growthHeight: "",
+      hardy: "",
+      nectar: "",
+      pollen: "",
+    },
   });
 
   return (
     <>
       <GlobalStyle />
       <SWRConfig value={{ fetcher }}>
-        <Component
-          {...pageProps}
-          setFilteredPlants={setFilteredPlants}
-          filteredPlants={filteredPlants}
-          setFilter={setFilter}
-          filter={filter}
-        />
+        <Component {...pageProps} setFilter={setFilter} filter={filter} />
         <NavBar />
       </SWRConfig>
     </>

@@ -1,38 +1,14 @@
-import { SaveButton } from "@/components/UserPlantForm/UserPlantForm.styled";
 import { useRouter } from "next/router";
 import styled from "styled-components";
-import useSWR from "swr";
 
-export default function Filter({ setFilteredPlants, setFilter, filter }) {
+export default function Filter({ setFilter, filter }) {
   const router = useRouter();
-  const { data: plants, isLoading } = useSWR("/api/plants");
-
-  if (isLoading) {
-    return <h1>Loading...</h1>;
-  }
-
-  function filteredPlants(event) {
-    const formData = new FormData(event.target);
-    const data = Object.fromEntries(formData);
-    setFilter(data);
-    const filteredPlants = plants.filter((plant) => {
-      return (
-        (data.plantType === "" || plant.usageType === data.plantType) &&
-        (data.lightRequirements === "" ||
-          plant.lightRequirements.includes(data.lightRequirements)) &&
-        (data.growthHeight === "" || data.growthHeight >= plant.growthHeight) &&
-        (data.hardy === "" || plant.hardy === data.hardy) &&
-        (data.nectar === "" || plant.nectar >= data.nectar) &&
-        (data.pollen === "" || plant.pollen >= data.pollen)
-      );
-    });
-    return filteredPlants;
-  }
 
   function handleSubmit(event) {
     event.preventDefault();
-    const filteredPlantList = filteredPlants(event);
-    setFilteredPlants(filteredPlantList);
+    const formData = new FormData(event.target);
+    const data = Object.fromEntries(formData);
+    setFilter(data);
     router.push("/balcony-planner");
   }
 
@@ -43,9 +19,9 @@ export default function Filter({ setFilteredPlants, setFilter, filter }) {
         <label htmlFor="plantType">
           Pflanzenart:{" "}
           <select
-            id="plantType"
-            name="plantType"
-            defaultValue={filter.plantType}
+            id="usageType"
+            name="usageType"
+            defaultValue={filter.usageType}
           >
             <option></option>
             <option>Nutzpflanze</option>
