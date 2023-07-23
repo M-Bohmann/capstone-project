@@ -45,7 +45,10 @@ export default function MyBalconyPlants() {
           {balconyPlants.map((plant) => (
             <li key={plant._id}>
               <PlantCardWrapper>
-                <DeletePlantButton onClick={() => handleDelete(plant._id)}>
+                <DeletePlantButton
+                  onClick={() => handleDelete(plant._id)}
+                  aria-label="Pflanze von meinem Balkon entfernen"
+                >
                   <DeleteSvg
                     xmlns="http://www.w3.org/2000/svg"
                     viewBox="0 0 24 24"

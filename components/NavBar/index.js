@@ -7,13 +7,13 @@ import PlantsIcon from "../PlantsIcon";
 export default function NavBar() {
   return (
     <StyledNavigation>
-      <Link href="/">
+      <Link href="/" aria-label="Zur Homepage">
         <HomeIcon />
       </Link>
-      <Link href="/plants">
+      <Link href="/plants" aria-label="Zur Pflanzenliste">
         <PlantsIcon />
       </Link>
-      <Link href="/balcony-planner">
+      <Link href="/balcony-planner" aria-label="Zur Mein Balkon">
         <BalconyIcon />
       </Link>
     </StyledNavigation>

@@ -5,7 +5,11 @@ export default function SearchBar({ onChange }) {
   return (
     <>
       <SearchBarIcon />
-      <StyledSearchBar type="search" onChange={onChange} />
+      <StyledSearchBar
+        type="search"
+        onChange={onChange}
+        aria-label="Suche nach Pflanzen"
+      />
     </>
   );
 }

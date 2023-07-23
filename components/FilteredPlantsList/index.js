@@ -57,7 +57,10 @@ export default function FilteredPlantsList({
               balconyPlants.some(
                 (balconyPlant) => balconyPlant._id === plant._id
               )) || (
-              <AddPlantButton onClick={() => handleClick(plant)}>
+              <AddPlantButton
+                onClick={() => handleClick(plant)}
+                aria-label="Pflanze zu deinem Balkon hinzufügen"
+              >
                 <StyledSvg
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 0 24 24"

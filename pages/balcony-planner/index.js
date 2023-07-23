@@ -19,7 +19,7 @@ export default function BalconyPlantsPlanner({
       <MyBalconyPlants />
       <StyledContainer>
         <StyledHeading>Pflanzenempfehlung</StyledHeading>
-        <Link href="/balcony-planner/filter">
+        <Link href="/balcony-planner/filter" aria-label="Zum Pflanzenfilter">
           <FilterSvg
             xmlns="http://www.w3.org/2000/svg"
             width="1em"
