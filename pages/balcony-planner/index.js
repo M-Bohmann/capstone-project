@@ -7,8 +7,6 @@ import useSWR from "swr";
 export default function BalconyPlantsPlanner({
   filteredPlants,
   setFilteredPlants,
-  addPlantToBalcony,
-  deleteBalconyPlant,
 }) {
   const { data: balconyPlants } = useSWR("/api/balconyPlants");
   return (
@@ -21,10 +19,7 @@ export default function BalconyPlantsPlanner({
         </AddPlantLink>
       </StyledDiv>
       {balconyPlants && balconyPlants.length > 0 ? (
-        <MyBalconyPlants
-          balconyPlants={balconyPlants}
-          deleteBalconyPlant={deleteBalconyPlant}
-        />
+        <MyBalconyPlants balconyPlants={balconyPlants} />
       ) : (
         <StyledParagraph>Dein Balkon ist leer.</StyledParagraph>
       )}
@@ -44,7 +39,6 @@ export default function BalconyPlantsPlanner({
       <FilteredPlantsList
         filteredPlants={filteredPlants}
         setFilteredPlants={setFilteredPlants}
-        addPlantToBalcony={addPlantToBalcony}
       />
     </>
   );

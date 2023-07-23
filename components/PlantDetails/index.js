@@ -12,7 +12,6 @@ import Head from "next/head";
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import UserIcon from "../UserIcon";
-import { MainContainer } from "@/pages";
 
 export default function PlantDetails() {
   const router = useRouter();
