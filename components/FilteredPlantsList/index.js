@@ -1,5 +1,4 @@
 import PlantCard from "../PlantCard";
-import Link from "next/link";
 import {
   AddPlantButton,
   HorizontalScrollList,
@@ -7,12 +6,15 @@ import {
 } from "./FilteredPlantsList.styled";
 import { PlantCardWrapper } from "../MyBalconyPlants/MyBalconyPlants.styled";
 import useSWR from "swr";
+import styled from "styled-components";
+import { DetailsPageLink } from "../PlantsList/PlantsList.styled";
 
 export default function FilteredPlantsList({
   filteredPlants,
   setFilteredPlants,
 }) {
   const { data: plants, isLoading, error } = useSWR("/api/plants");
+  const { data: balconyPlants } = useSWR("/api/balconyPlants");
   const { mutate } = useSWR("/api/balconyPlants");
 
   async function handleClick(plant) {
@@ -51,15 +53,34 @@ export default function FilteredPlantsList({
       {filteredPlants.map((plant) => (
         <PlantCardListItem key={plant._id}>
           <PlantCardWrapper>
-            <AddPlantButton onClick={() => handleClick(plant)}>
-              ＋
-            </AddPlantButton>
-            <Link href={`/plants/${plant._id}`}>
+            {(balconyPlants &&
+              balconyPlants.some(
+                (balconyPlant) => balconyPlant._id === plant._id
+              )) || (
+              <AddPlantButton onClick={() => handleClick(plant)}>
+                <StyledSvg
+                  xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 24 24"
+                  width="1em"
+                  height="1em"
+                >
+                  <path d="M20 14H14V20H10V14H4V10H10V4H14V10H20V14Z" />
+                </StyledSvg>
+              </AddPlantButton>
+            )}
+            <DetailsPageLink href={`/plants/${plant._id}`}>
               <PlantCard plant={plant} />
-            </Link>
+            </DetailsPageLink>
           </PlantCardWrapper>
         </PlantCardListItem>
       ))}
     </HorizontalScrollList>
   );
 }
+
+const StyledSvg = styled.svg`
+  font-size: 28px;
+  fill: darkgreen;
+  stroke: white;
+  stroke-width: 1.4px;
+`;
