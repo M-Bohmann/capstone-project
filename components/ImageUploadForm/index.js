@@ -42,7 +42,6 @@ export default function ImageUploadForm({ onUpload }) {
           <input type="file" name="file" />
           <StyledButton type="submit">Hochladen</StyledButton>
           <p>{uploadStatus}</p>
-          {/*we use conditional rendering */}
           {error && <p>{error.message}</p>}
         </Form>
       </StyledContainer>
