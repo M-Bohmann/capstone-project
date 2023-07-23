@@ -31,3 +31,11 @@ export const DeleteSvg = styled.svg`
   stroke: #ffffff;
   stroke-width: 1.2px;
 `;
+
+export const StyledParagraph = styled.p`
+  height: 270px;
+  margin-left: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+`;

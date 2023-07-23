@@ -2,15 +2,8 @@ import FilteredPlantsList from "@/components/FilteredPlantsList";
 import Link from "next/link";
 import styled from "styled-components";
 import MyBalconyPlants from "@/components/MyBalconyPlants";
-import useSWR from "swr";
 
-export default function BalconyPlantsPlanner({
-  filteredPlants,
-  setFilteredPlants,
-  addPlantToBalcony,
-  deleteBalconyPlant,
-}) {
-  const { data: balconyPlants } = useSWR("/api/balconyPlants");
+export default function BalconyPlantsPlanner({ filter }) {
   return (
     <>
       <h1>Balkon Pflanzenplaner</h1>
@@ -20,17 +13,10 @@ export default function BalconyPlantsPlanner({
           + eigene Pflanze
         </AddPlantLink>
       </StyledDiv>
-      {balconyPlants && balconyPlants.length > 0 ? (
-        <MyBalconyPlants
-          balconyPlants={balconyPlants}
-          deleteBalconyPlant={deleteBalconyPlant}
-        />
-      ) : (
-        <StyledParagraph>Dein Balkon ist leer.</StyledParagraph>
-      )}
+      <MyBalconyPlants />
       <StyledContainer>
         <StyledHeading>Pflanzenempfehlung</StyledHeading>
-        <Link href="/balcony-planner/filter">
+        <Link href="/balcony-planner/filter" aria-label="Zum Pflanzenfilter">
           <FilterSvg
             xmlns="http://www.w3.org/2000/svg"
             width="1em"
@@ -41,11 +27,7 @@ export default function BalconyPlantsPlanner({
           </FilterSvg>
         </Link>
       </StyledContainer>
-      <FilteredPlantsList
-        filteredPlants={filteredPlants}
-        setFilteredPlants={setFilteredPlants}
-        addPlantToBalcony={addPlantToBalcony}
-      />
+      <FilteredPlantsList filter={filter} />
     </>
   );
 }
@@ -81,12 +63,4 @@ const FilterSvg = styled.svg`
 const StyledHeading = styled.h2`
   margin-bottom: 0;
   margin-left: 5px;
-`;
-
-const StyledParagraph = styled.p`
-  height: 270px;
-  margin-left: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 `;
