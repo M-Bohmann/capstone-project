@@ -7,21 +7,27 @@ export const MyBalconyPlantsList = styled.ul`
   justify-content: space-evenly;
   padding-left: 0;
   padding-right: 0;
-  padding-top: 10px;
   overflow: auto;
-  max-height: 255px;
+  height: 270px;
 `;
 
 export const DeletePlantButton = styled.button`
   position: absolute;
-  right: 0;
-  top: -0.4rem;
+  right: -0.3rem;
+  top: -0.2rem;
   background-color: transparent;
   border: none;
-  color: red;
-  font-size: 32px;
+  z-index: 10;
+  padding: 0;
 `;
 
 export const PlantCardWrapper = styled.div`
   position: relative;
+`;
+
+export const DeleteSvg = styled.svg`
+  font-size: 21px;
+  fill: #e50027;
+  stroke: #ffffff;
+  stroke-width: 1.2px;
 `;
