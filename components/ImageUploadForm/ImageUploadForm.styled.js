@@ -21,4 +21,3 @@ export const ImageUploadParagraph = styled.p`
   margin-bottom: 0;
   margin-left: 10px;
 `;
-

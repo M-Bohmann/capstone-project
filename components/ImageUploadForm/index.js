@@ -14,7 +14,7 @@ export default function ImageUploadForm({ onUpload }) {
 
   async function submitImage(event) {
     event.preventDefault();
-    setUploadStatus("Uploading...");
+    setUploadStatus("Wird hochgeladen...");
     const formData = new FormData(event.target);
 
     try {
@@ -26,7 +26,7 @@ export default function ImageUploadForm({ onUpload }) {
         const result = await response.json();
         const url = result.url;
         mutate();
-        setUploadStatus("Upload complete!");
+        setUploadStatus("Vollständig hochgeladen!");
         onUpload(url);
       }
     } catch (error) {
