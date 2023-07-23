@@ -1,14 +1,18 @@
 import {
   AttributesHeading,
+  BackButton,
   BotanicalNameParagraph,
-  StyledHeading,
+  EditLink,
+  HeaderBarDiv,
+  PlantDetailsList,
+  PlantDetailsListItem,
   StyledImage,
 } from "./PlantDetails.styled";
 import Head from "next/head";
-import Link from "next/link";
 import { useRouter } from "next/router";
 import useSWR from "swr";
 import UserIcon from "../UserIcon";
+import { MainContainer } from "@/pages";
 
 export default function PlantDetails() {
   const router = useRouter();
@@ -59,30 +63,48 @@ export default function PlantDetails() {
       <Head>
         <title>{name}</title>
       </Head>
-      <button onClick={router.back}>← Back</button>
-      {isUserPlant && <UserIcon />}
-      <StyledHeading>{name}</StyledHeading>
-      <BotanicalNameParagraph>{botanicalName}</BotanicalNameParagraph>
-      <StyledImage src={imgUrl} alt={name} width={305} height={165} />
-      <AttributesHeading>Eigenschaften</AttributesHeading>
-      <ul>
-        <li>Pflanzenart: {usageType}</li>
-        {lightRequirements && lightRequirements.length > 0 && (
-          <li>Standort: {lightRequirements.join(", ")}</li>
+      <HeaderBarDiv>
+        <BackButton onClick={router.back}>← Zurück</BackButton>
+        {isUserPlant ? (
+          <>
+            <UserIcon isOnPlantDetails />
+            <EditLink href={`/userPlants/${id}/edit`}>Bearbeiten</EditLink>
+          </>
+        ) : (
+          <></>
         )}
-        <li>Wuchshöhe: {growthHeight && `${growthHeight} cm`}</li>
-        <li>Winterhart: {hardy}</li>
-        <li>
-          Blütezeit:
+      </HeaderBarDiv>
+      <h1>{name}</h1>
+      <BotanicalNameParagraph>{botanicalName}</BotanicalNameParagraph>
+      <StyledImage src={imgUrl} alt={name} width={310} height={230} />
+      <AttributesHeading>Eigenschaften</AttributesHeading>
+      <PlantDetailsList>
+        <PlantDetailsListItem>Pflanzenart: {usageType}</PlantDetailsListItem>
+        {lightRequirements && lightRequirements.length > 0 && (
+          <PlantDetailsListItem>
+            Standort: {lightRequirements.join(", ")}
+          </PlantDetailsListItem>
+        )}
+        <PlantDetailsListItem>
+          Wuchshöhe: {growthHeight && `${growthHeight} cm`}
+        </PlantDetailsListItem>
+        <PlantDetailsListItem>Winterhart: {hardy}</PlantDetailsListItem>
+        <PlantDetailsListItem>
+          Blütezeit:{" "}
           {bloomStart === bloomEnd || !bloomEnd
             ? bloomStart
             : `${bloomStart} bis ${bloomEnd}`}
-        </li>
-        <li>Nektargehalt: {pollenNectarLevel[nectar]}</li>
-        <li>Pollengehalt: {pollenNectarLevel[pollen]}</li>
-        {isUserPlant && <li>Notiz: {note}</li>}
-      </ul>
-      {isUserPlant && <Link href={`/userPlants/${id}/edit`}>Bearbeiten</Link>}
+        </PlantDetailsListItem>
+        <PlantDetailsListItem>
+          Nektargehalt: {pollenNectarLevel[nectar]}
+        </PlantDetailsListItem>
+        <PlantDetailsListItem>
+          Pollengehalt: {pollenNectarLevel[pollen]}
+        </PlantDetailsListItem>
+        {isUserPlant && (
+          <PlantDetailsListItem>Notiz: {note}</PlantDetailsListItem>
+        )}
+      </PlantDetailsList>
     </>
   );
 }

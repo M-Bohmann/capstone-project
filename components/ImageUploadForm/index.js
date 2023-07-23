@@ -1,7 +1,12 @@
 import React, { useState } from "react";
 // we are using useSWR to mutate the data once a file has been uploaded
 import useSWR from "swr";
-import { Form, StyledButton, StyledContainer } from "./ImageUploadForm.styled";
+import {
+  Form,
+  ImageUploadParagraph,
+  StyledButton,
+  StyledContainer,
+} from "./ImageUploadForm.styled";
 
 export default function ImageUploadForm({ onUpload }) {
   const { mutate } = useSWR("/api/images/");
@@ -36,15 +41,17 @@ export default function ImageUploadForm({ onUpload }) {
   }
 
   return (
-    <StyledContainer>
-      <h2>Bild hochladen</h2>
-      <Form onSubmit={submitImage}>
-        <input type="file" name="file" />
-        <StyledButton type="submit">Hochladen</StyledButton>
-        <p>{uploadStatus}</p>
-        {/*we use conditional rendering */}
-        {error && <p>{error.message}</p>}
-      </Form>
-    </StyledContainer>
+    <>
+      <ImageUploadParagraph>Pflanzenbild hochladen:</ImageUploadParagraph>{" "}
+      <StyledContainer>
+        <Form onSubmit={submitImage}>
+          <input type="file" name="file" />
+          <StyledButton type="submit">Hochladen</StyledButton>
+          <p>{uploadStatus}</p>
+          {/*we use conditional rendering */}
+          {error && <p>{error.message}</p>}
+        </Form>
+      </StyledContainer>
+    </>
   );
 }

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import styled from "styled-components";
 
 export const StyledHeading = styled.h1`
@@ -6,7 +7,8 @@ export const StyledHeading = styled.h1`
   top: 0;
   width: 100%;
   margin-top: 0;
-  background-color: white;
+  background-color: #f5f5dc;
+  z-index: 10;
 `;
 
 export const StyledPlantsList = styled.ul`
@@ -17,14 +19,20 @@ export const StyledPlantsList = styled.ul`
   padding-left: 0;
   padding-right: 0;
   padding-top: 105px;
-  padding-bottom: 30px;
+  margin-bottom: 50px;
 `;
 
 export const StyledParagraph = styled.p`
   text-align: center;
   position: fixed;
-  top: 20px;
+  top: 22.5px;
   width: 100%;
-  padding-bottom: 60px;
-  background-color: white;
+  padding-bottom: 40px;
+  background-color: #f5f5dc;
+  z-index: 10;
+`;
+
+export const DetailsPageLink = styled(Link)`
+  text-decoration: none;
+  color: black;
 `;

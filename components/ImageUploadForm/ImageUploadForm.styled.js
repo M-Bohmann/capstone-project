@@ -1,7 +1,8 @@
 import styled from "styled-components";
 
 export const Form = styled.form`
-  margin: 2rem auto;
+  margin-top: 0;
+  margin-bottom: 0;
 `;
 export const StyledButton = styled.button`
   background-color: green;
@@ -13,6 +14,11 @@ export const StyledButton = styled.button`
 
 export const StyledContainer = styled.div`
   display: flex;
-  flex-direction: column;
-  align-items: center;
+  justify-content: space-evenly;
 `;
+
+export const ImageUploadParagraph = styled.p`
+  margin-bottom: 0;
+  margin-left: 10px;
+`;
+
